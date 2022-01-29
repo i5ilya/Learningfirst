@@ -23,11 +23,12 @@ if age >= 100:
     print('Вы слишком стары для теста.')
     exit(0)
 else:
-    sex = input('Укажите Ваш пол "М" или "Ж": ')
+    sex = input('Укажите Ваш пол "М, м" или "Ж, ж": ')
     sex = sex.lower()  # как бы пользователь не указал, переводим в нижний регистр
-    while sex != 'М' and sex != 'м' and sex != 'Ж' and sex != 'ж':
+    while sex != 'м' and sex != 'ж':
         print("Введены не верные данные, повторите ввод: ")
-        sex = input('Укажите Ваш пол "М" или "Ж": ')
+        sex = input('Укажите Ваш пол "М, м" или "Ж, ж": ')
+        sex = sex.lower()
 
 hand = int(input('Введите длинну обхвата запястья в сантиметрах: '))
 while hand <= 10 or hand >= 30:
@@ -45,13 +46,13 @@ def calc_coef(rost):
 
 
 # У нас есть 3 типа телосложения. Их нужно определить и ввести.
-if ((sex == 'Ж' or sex == 'ж') and hand <= 16) or ((sex == 'М' or sex == 'м') and hand <= 17):
+if sex == 'ж' and hand <= 16 or sex == 'м' and hand <= 17:
     body_type = "small"
 
-elif ((sex == 'Ж' or sex == 'ж') and 17 <= hand <= 18) or ((sex == 'М' or sex == 'м') and 18 <= hand <= 19):
+elif sex == 'ж' and 17 <= hand <= 18 or sex == 'м' and 18 <= hand <= 19:
     body_type = "normal"
 
-elif ((sex == 'Ж' and sex == 'ж') or hand < 19) or ((sex == 'М' or sex == 'м') and hand >= 20):
+elif sex == 'ж' or hand < 19 or sex == 'м' and hand >= 20:
     body_type = "big"
 
 
