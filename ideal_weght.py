@@ -29,10 +29,10 @@ else:
         print("Введены не верные данные, повторите ввод: ")
         sex = input('Укажите Ваш пол "М" или "Ж": ')
 
-ruka = int(input('Введите длинну обхвата запястья в сантиметрах: '))
-while ruka <= 10 or ruka >= 30:
+hand = int(input('Введите длинну обхвата запястья в сантиметрах: '))
+while hand <= 10 or hand >= 30:
     print('Введены не корректные данные, повторите ввод: ')
-    ruka = int(input('Введите длинну обхвата запястья в сантиметрах: '))
+    hand = int(input('Введите длинну обхвата запястья в сантиметрах: '))
 
 coef = ()  # вводим коэфициент и расчитываем по условиям задачи
 if rost <= 165:
@@ -43,13 +43,13 @@ elif rost >= 175:
     coef = 110
 
 # У нас есть 3 типа телосложения. Их нужно определить и ввести.
-if ((sex == 'Ж' or sex == 'ж') and ruka <= 16) or ((sex == 'М' or sex == 'м') and ruka <= 17):
+if ((sex == 'Ж' or sex == 'ж') and hand <= 16) or ((sex == 'М' or sex == 'м') and hand <= 17):
     body_type = "small"
 
-elif ((sex == 'Ж' or sex == 'ж') and 17 <= ruka <= 18) or ((sex == 'М' or sex == 'м') and 18 <= ruka <= 19):
+elif ((sex == 'Ж' or sex == 'ж') and 17 <= hand <= 18) or ((sex == 'М' or sex == 'м') and 18 <= hand <= 19):
     body_type = "normal"
 
-elif ((sex == 'Ж' and sex == 'ж') or ruka < 19) or ((sex == 'М' or sex == 'м') and ruka >= 20):
+elif ((sex == 'Ж' and sex == 'ж') or hand < 19) or ((sex == 'М' or sex == 'м') and hand >= 20):
     body_type = "big"
 
 
