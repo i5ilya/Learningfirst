@@ -27,6 +27,7 @@ def get_height():  # Ввод роста с проверками.
 
 height = get_height()
 
+
 def get_age():
     while True:
         try:
