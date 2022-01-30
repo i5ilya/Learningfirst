@@ -10,9 +10,18 @@
 Соответственно, для астенического типа вес надо уменьшить примерно на 10%, для гиперстенического — увеличить."""
 
 print('Программа для расчета идеального веса, нужно ввести Ваш рост, возраст, пол, и длинну обхвата запястья: ')
-rost = int(input('Укажите Ваш рост в сантиметрах: '))
-while rost <= 120 or rost >= 220:
-    rost = int(input('Рост указан не верно, повторите ввод роста: '))
+def get_height():
+    global height  # Делаем переменную height доступной всей программе, т.к. не собираюсь вызывать эти функции в других модулях
+    while True:
+        try:
+            height = int(input('Укажите Ваш рост в сантиметрах: '))
+            if 120 <= height <= 220:
+                return height
+            else:
+                print('Введены не числа от 120 до 220, повторите ввод: ')
+        except(ValueError):
+            print('Введены не цифры: ')
+get_height()
 
 age = int(input('Укажите Ваш возраст (больше 20 лет): '))
 if age <= 19:
@@ -30,6 +39,7 @@ else:
 
 
 def get_hand_length():
+    global hand # Делаем переменную hand доступной всей программе, т.к. не собираюсь вызывать эти функции в других модулях
     while True:
         try:
             hand = int(input('Введите длинну обхвата запястья в сантиметрах: '))
@@ -40,14 +50,14 @@ def get_hand_length():
         except(ValueError):
             print('Введены не цифры: ')
 
-hand = get_hand_length()
+get_hand_length()
 
-def calc_coef(rost):
-    if rost <= 165:
+def calc_coef(height):
+    if height <= 165:
         coef = 100
-    if 166 >= rost <= 174:
+    if 166 >= height <= 174:
         coef = 105
-    if rost >= 175:
+    if height >= 175:
         coef = 110
     return coef
 
@@ -65,31 +75,31 @@ elif sex == 'ж' or hand < 19 or sex == 'м' and hand >= 20:
 
 if 20 <= age <= 30:
     if body_type == "small":
-        ves = ((rost - calc_coef(rost)) - ((rost - calc_coef(rost)) * 0.2))  # вычли 20% т.к. вес -10% и тонкость кости -10%
+        ves = ((height - calc_coef(height)) - ((height - calc_coef(height)) * 0.2))  # вычли 20% т.к. вес -10% и тонкость кости -10%
         print('У Вас астенический (тонкокостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
     elif body_type == "normal":
-        ves = ((rost - calc_coef(rost)) - ((rost - calc_coef(rost)) * 0.1))  # вычли 10%, т.к. действует условие возраст
+        ves = ((height - calc_coef(height)) - ((height - calc_coef(height)) * 0.1))  # вычли 10%, т.к. действует условие возраст
         print('У Вас нормостенический (нормокостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
     elif body_type == "big":
-        ves = (rost - calc_coef(rost))  # не вычитали % , т.к. за возраст должны вычесть 10%, а за ширококстность прибавить.
+        ves = (height - calc_coef(height))  # не вычитали % , т.к. за возраст должны вычесть 10%, а за ширококстность прибавить.
         print('У Вас гиперстенический (ширококостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
 if 31 <= age <= 49:
     if body_type == "small":
-        ves = ((rost - calc_coef(rost)) - ((rost - calc_coef(rost)) * 0.1))  # вычли 10% за тонкость кости
+        ves = ((height - calc_coef(height)) - ((height - calc_coef(height)) * 0.1))  # вычли 10% за тонкость кости
         print('У Вас астенический (тонкокостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
     elif body_type == "normal":
-        ves = (rost - calc_coef(rost))  # нет условий возраст и нет тонкости кости или толстости кости.
+        ves = (height - calc_coef(height))  # нет условий возраст и нет тонкости кости или толстости кости.
         print('У Вас нормостенический (нормокостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
     elif body_type == "big":
-        ves = ((rost - calc_coef(rost)) + ((rost - calc_coef(rost)) * 0.1))  # прибавили 10% за толстость кости
+        ves = ((height - calc_coef(height)) + ((height - calc_coef(height)) * 0.1))  # прибавили 10% за толстость кости
         print('У Вас гиперстенический (ширококостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
 if age >= 50:
     if body_type == "small":
-        ves = ((rost - calc_coef(rost)) - ((rost - calc_coef(rost)) * 0.04))  # вычли 10% за тонкость кости и прибавили 0.6 за возраст
+        ves = ((height - calc_coef(height)) - ((height - calc_coef(height)) * 0.04))  # вычли 10% за тонкость кости и прибавили 0.6 за возраст
         print('У Вас астенический (тонкокостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
     elif body_type == "normal":
-        ves = ((rost - calc_coef(rost)) + ((rost - calc_coef(rost)) * 0.06))  # прибавили 6% за возраст
+        ves = ((height - calc_coef(height)) + ((height - calc_coef(height)) * 0.06))  # прибавили 6% за возраст
         print('У Вас нормостенический (нормокостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
     elif body_type == "big":
-        ves = ((rost - calc_coef(rost)) + ((rost - calc_coef(rost)) * 0.16))  # прибавили 10% за толстость кости и 6 за возраст
+        ves = ((height - calc_coef(height)) + ((height - calc_coef(height)) * 0.16))  # прибавили 10% за толстость кости и 6 за возраст
         print('У Вас гиперстенический (ширококостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
