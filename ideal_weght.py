@@ -28,10 +28,19 @@ else:
         sex = input("Введены не верные данные, повторите ввод Вашего пола: ")
         sex = sex.lower()
 
-hand = int(input('Введите длинну обхвата запястья в сантиметрах: '))
-while hand <= 10 or hand >= 30:
-    print('Введены не корректные данные, повторите ввод: ')
-    hand = int(input('Введите длинну обхвата запястья в сантиметрах: '))
+
+def get_hand_length():
+    while True:
+        try:
+            hand = int(input('Введите длинну обхвата запястья в сантиметрах: '))
+            if 10 <= hand <= 30:
+                return hand
+            else:
+                print('Введены не цифры из диапазона от 10 до 30 см: ')
+        except(ValueError):
+            print('Введены не цифры: ')
+
+hand = get_hand_length()
 
 def calc_coef(rost):
     if rost <= 165:
