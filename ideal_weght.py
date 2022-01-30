@@ -52,15 +52,16 @@ def get_hand_length():
 
 get_hand_length()
 
-def calc_coef(height):
+def calc_factor(height):
+    global factor
     if height <= 165:
-        coef = 100
+        factor = 100
     if 166 >= height <= 174:
-        coef = 105
+        factor = 105
     if height >= 175:
-        coef = 110
-    return coef
-
+        factor = 110
+    return factor
+calc_factor(height)
 
 # У нас есть 3 типа телосложения. Их нужно определить и ввести.
 if sex == 'ж' and hand <= 16 or sex == 'м' and hand <= 17:
@@ -75,31 +76,31 @@ elif sex == 'ж' or hand < 19 or sex == 'м' and hand >= 20:
 
 if 20 <= age <= 30:
     if body_type == "small":
-        ves = ((height - calc_coef(height)) - ((height - calc_coef(height)) * 0.2))  # вычли 20% т.к. вес -10% и тонкость кости -10%
+        ves = ((height - factor) - ((height - factor) * 0.2))  # вычли 20% т.к. вес -10% и тонкость кости -10%
         print('У Вас астенический (тонкокостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
     elif body_type == "normal":
-        ves = ((height - calc_coef(height)) - ((height - calc_coef(height)) * 0.1))  # вычли 10%, т.к. действует условие возраст
+        ves = ((height - factor) - ((height - factor) * 0.1))  # вычли 10%, т.к. действует условие возраст
         print('У Вас нормостенический (нормокостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
     elif body_type == "big":
-        ves = (height - calc_coef(height))  # не вычитали % , т.к. за возраст должны вычесть 10%, а за ширококстность прибавить.
+        ves = (height - factor)  # не вычитали % , т.к. за возраст должны вычесть 10%, а за ширококстность прибавить.
         print('У Вас гиперстенический (ширококостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
 if 31 <= age <= 49:
     if body_type == "small":
-        ves = ((height - calc_coef(height)) - ((height - calc_coef(height)) * 0.1))  # вычли 10% за тонкость кости
+        ves = ((height - factor) - ((height - factor) * 0.1))  # вычли 10% за тонкость кости
         print('У Вас астенический (тонкокостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
     elif body_type == "normal":
-        ves = (height - calc_coef(height))  # нет условий возраст и нет тонкости кости или толстости кости.
+        ves = (height - factor)  # нет условий возраст и нет тонкости кости или толстости кости.
         print('У Вас нормостенический (нормокостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
     elif body_type == "big":
-        ves = ((height - calc_coef(height)) + ((height - calc_coef(height)) * 0.1))  # прибавили 10% за толстость кости
+        ves = ((height - factor) + ((height - factor) * 0.1))  # прибавили 10% за толстость кости
         print('У Вас гиперстенический (ширококостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
 if age >= 50:
     if body_type == "small":
-        ves = ((height - calc_coef(height)) - ((height - calc_coef(height)) * 0.04))  # вычли 10% за тонкость кости и прибавили 0.6 за возраст
+        ves = ((height - factor) - ((height - factor) * 0.04))  # вычли 10% за тонкость кости и прибавили 0.6 за возраст
         print('У Вас астенический (тонкокостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
     elif body_type == "normal":
-        ves = ((height - calc_coef(height)) + ((height - calc_coef(height)) * 0.06))  # прибавили 6% за возраст
+        ves = ((height - factor) + ((height - factor) * 0.06))  # прибавили 6% за возраст
         print('У Вас нормостенический (нормокостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
     elif body_type == "big":
-        ves = ((height - calc_coef(height)) + ((height - calc_coef(height)) * 0.16))  # прибавили 10% за толстость кости и 6 за возраст
+        ves = ((height - factor) + ((height - factor) * 0.16))  # прибавили 10% за толстость кости и 6 за возраст
         print('У Вас гиперстенический (ширококостный) тип телосложения, расчетный вес равен: ' + str(round(ves)))
