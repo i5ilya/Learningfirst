@@ -91,14 +91,16 @@ def calc_factor(h):  # Считаем коэффициент, в зависим�
 factor = calc_factor(height)
 
 # У нас есть 3 типа телосложения. Их нужно определить и ввести.
-if sex == 'ж' and hand <= 16 or sex == 'м' and hand <= 17:
-    body_type = "small"
+def calc_body_type(s, h):
+    if s == 'ж' and h <= 16 or s == 'м' and h <= 17:
+        return 'small'
+    elif s == 'ж' and 17 <= h <= 18 or s == 'м' and 18 <= h <= 19:
+        return 'normal'
+    else:
+        return 'big'
 
-elif sex == 'ж' and 17 <= hand <= 18 or sex == 'м' and 18 <= hand <= 19:
-    body_type = "normal"
 
-elif sex == 'ж' or hand < 19 or sex == 'м' and hand >= 20:
-    body_type = "big"
+body_type = calc_body_type(sex, hand)
 
 
 if 20 <= age <= 30:
