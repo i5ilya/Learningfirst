@@ -79,7 +79,7 @@ user_hand = get_hand_length()
 def calc_factor(height: int) -> int:  # Считаем коэффициент, в функцию будем передаем рост пользователя - height
     if height <= 165:
         return 100
-    if height >= 166 or height <= 174:
+    if 166 >= height <= 174:
         return 105
     if height >= 175:
         return 110
