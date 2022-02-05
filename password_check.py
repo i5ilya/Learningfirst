@@ -7,17 +7,21 @@ import string
 
 
 def pass_strength(value: str) -> str:
+    if len(value) < 8:
+        return 'Too Weak'
     digits = string.digits
     lowers = string.ascii_lowercase
     uppers = string.ascii_uppercase
-    if len(value) < 8:
-        return 'Too Weak'
-    if all(x in digits for x in value) or all(x in lowers for x in value) or all(x in uppers for x in value):  # если все буквы
-        return 'Weak'
-    if any(x in digits for x in value) and any(x in lowers for x in value) and any(x in uppers for x in value):
+    count = 0
+    for symbols in (digits, lowers, uppers):
+        if any(e in symbols for e in value):
+            count +=1
+            continue
+    if count == 3:
         return 'Very Good'
-    else:
-        return 'Good'
+    return 'Weak' if count ==1 else 'Good'
+
+
 
 
 if __name__ == '__main__':
