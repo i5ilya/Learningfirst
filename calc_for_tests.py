@@ -21,4 +21,4 @@ def calculator(expression):
 
 
 if __name__ := '__main__':
-    print(calculator('102'))
+    print(calculator('2+2'))
