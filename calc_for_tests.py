@@ -8,14 +8,20 @@ def calculator(expression):
                 left, right = expression.split(sign)
                 left = int(left)
                 right = int(right)
-                if sign == '+':
-                    return left + right
-                if sign == '-':
-                    return left - right
-                if sign == '*':
-                    return left * right
-                if sign == '/':
-                    return left / right
+                return {
+                    '+': lambda a, b: a + b,
+                    '-': lambda a, b: a - b,
+                    '*': lambda a, b: a * b,
+                    '/': lambda a, b: a / b,
+                }[sign](left,right)
+                # if sign == '+':
+                #     return left + right
+                # if sign == '-':
+                #     return left - right
+                # if sign == '*':
+                #     return left * right
+                # if sign == '/':
+                #     return left / right
             except(ValueError, TypeError):
                 raise ValueError('Выражение должно содержать 2 целых числа и один знак')
 
