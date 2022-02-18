@@ -12,7 +12,7 @@ s = s.replace('\r', ' ')  # Удалить знаки переноса стро�
 def marks_remove(some_string: str) -> str:  # Удалим знаки препинания
     # punctuation = string.punctuation
     punctuation = ['.', ',', ';', ':', '!', '?', '"', "'", '(', ')', '...', '—', '«', '»', '.', ' - ']
-    return ("".join(elements for elements in some_string if elements not in punctuation))
+    return "".join(elements for elements in some_string if elements not in punctuation)
 
 
 new_s = marks_remove(s)
