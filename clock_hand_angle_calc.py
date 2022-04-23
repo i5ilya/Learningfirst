@@ -8,28 +8,28 @@
 # hour = int(input('Введите час: '))
 # minute = int(input('Введите минуты: '))
 
-while True:
-    try:
-        hour = int(input('Введите час: '))
-        if 0 <= hour < 13:
-            break
-        else:
-            print('Введены не числа от 0 до 12, повторите ввод: ')
-    except ValueError:
-        print('Введены не цифры: ')
+# while True:
+#     try:
+#         hour = int(input('Введите час: '))
+#         if 0 <= hour < 13:
+#             break
+#         else:
+#             print('Введены не числа от 0 до 12, повторите ввод: ')
+#     except ValueError:
+#         print('Введены не цифры: ')
+#
+# while True:
+#     try:
+#         minute = int(input('Введите минуты: '))
+#         if 0 <= minute < 60:
+#             break
+#         else:
+#             print('Введены не числа от 0 до 59, повторите ввод: ')
+#     except ValueError:
+#         print('Введены не цифры: ')
 
-while True:
-    try:
-        minute = int(input('Введите минуты: '))
-        if 0 <= minute < 60:
-            break
-        else:
-            print('Введены не числа от 0 до 59, повторите ввод: ')
-    except ValueError:
-        print('Введены не цифры: ')
-
-degree_minute_hand = 6 * minute
-degree_hour_hand = (hour * 30) + (minute * 0.5)
+#degree_minute_hand = 6 * minute
+#degree_hour_hand = (hour * 30) + (minute * 0.5)
 
 
 def degree_between_hand(value_degree_minute_hand, value_degree_hour_hand):
@@ -55,12 +55,21 @@ def correction(main_func):
         return main_func
 
 
-right_angle = correction(degree_between_hand(degree_minute_hand, degree_hour_hand))
-angle = 30 * hour + 0.5 * minute - 6 * minute  # какая-то формула
+#right_angle = correction(degree_between_hand(degree_minute_hand, degree_hour_hand))
+#angle = 30 * hour + 0.5 * minute - 6 * minute  # какая-то формула
 
 if __name__ == '__main__':
-    print(f'Угол часовой стрелки от нуля часов: {degree_hour_hand}')
-    print(f'Угол минутной стрелки от нуля часов: {degree_minute_hand}')
-    print(f'Угол между стрелками: {degree_between_hand(degree_minute_hand, degree_hour_hand)}')
-    print(f'С учетом коррекции(показываем острый угол): {right_angle}')
-    print(f'Расчет по формуле из интернетов: {angle}')
+    # print(f'Угол часовой стрелки от нуля часов: {degree_hour_hand}')
+    # print(f'Угол минутной стрелки от нуля часов: {degree_minute_hand}')
+    # print(f'Угол между стрелками: {degree_between_hand(degree_minute_hand, degree_hour_hand)}')
+    # print(f'С учетом коррекции(показываем острый угол): {right_angle}')
+    # print(f'Расчет по формуле из интернетов: {angle}')
+    minute = 0
+    hour = 0
+    degree_minute_hand = 6 * minute
+    degree_hour_hand = (hour * 30) + (minute * 0.5)
+
+    for hour in range(12):
+        for minute in range(60):
+            print(f'Время {hour}:{minute}, Угол между стрелками: {correction(degree_between_hand(6 * minute, (hour * 30) + (minute * 0.5)))}')
+
