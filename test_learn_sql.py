@@ -1,12 +1,13 @@
 from io import StringIO
 import psycopg2
 import psycopg2.extras
-from sqlalchemy import create_engine
+#from sqlalchemy import create_engine
 import yfinance as yf
 import pandas as pd
 from psycopg2 import OperationalError
 import datetime
 import time
+import matplotlib.pyplot as plt
 
 # df = yf.download('MMM', period='6mo')
 
@@ -14,10 +15,10 @@ import time
 
 # engine = create_engine('postgresql://postgres:syncmaster@localhost/test_db')
 
-conn = psycopg2.connect(dbname='test_db', user='postgres',
-                        password='syncmaster', host='localhost')
+#conn = psycopg2.connect(dbname='test_db', user='postgres',
+#                        password='syncmaster', host='localhost')
 # cursor = conn.cursor(cursor_factory=psycopg2.extras.NamedTupleCursor)
-cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+#cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 
 # cursor = conn.cursor()
@@ -132,11 +133,11 @@ somelist2 = []
 if __name__ == '__main__':
     #for item in somelist:
     #somelist2 = [f'"{i}"' for i in somelist]
-    for item in somelist:
-        somelist2.append(f'"x-{item}"')
-
-    for i in somelist2:
-        print(i)
+    # for item in somelist:
+    #     somelist2.append(f'"x-{item}"')
+    #
+    # for i in somelist2:
+    #     print(i)
     # execute_query(conn, query_create_table('mmm'))
     # cursor.execute('SELECT * FROM MMM')
     # cursor.execute('SELECT max(Date) FROM mmm;')
@@ -173,6 +174,13 @@ if __name__ == '__main__':
     # execute_query(conn, query_create_table('mmm'))
 
     # df = dl_data_yf_period('MMM', '2022-04-15', datetime.datetime.today())
+    data = yf.download(tickers="AKAM", start='2022-05-04', end='2022-05-05', interval="5m")
 
-    cursor.close()
-    conn.close()
+    sorted_df = data.sort_values(by='Volume', ascending=False)
+    #print(data.dtypes)
+    print(sorted_df[['High', 'Low', 'Close', 'Volume']])
+    data.plot(x="Close", y=["Volume"], kind="scatter")
+    plt.show()
+
+    #cursor.close()
+    #conn.close()
