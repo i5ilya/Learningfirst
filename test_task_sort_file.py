@@ -1,5 +1,5 @@
 import time
-import operator
+#from operator import itemgetter
 
 start_time = time.time()
 
@@ -15,12 +15,12 @@ raw_list = []
 for item in lines:
     mini_list = []
     mini_list.append(int(item.partition('.')[0])), mini_list.append(item.partition('.')[2].lstrip())
-    raw_list.append(mini_list)
+    raw_list.append(tuple(mini_list))
 
 
 sorted_list = sorted(sorted(raw_list, key = lambda x : x[0]), key = lambda x : x[1])
 
-#sorted_list = sorted(raw_list, key=operator.itemgetter(1, 0))
+#sorted_list = sorted(raw_list, key=itemgetter(1, 0))
 
 
 def make_file():
