@@ -17,5 +17,5 @@ if __name__ == '__main__':
     # print(f'{c=}')
     #print(*[1, 2, 3])
     #exemple(1,2, c=3, d=4)
-    #myprint(1,2,3,4,5, sobatsuka=1)
-    print(*thisdict)
+    myprint(sobak = 'barabak')
+    #print(*thisdict)
