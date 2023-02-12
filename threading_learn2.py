@@ -46,5 +46,5 @@ if __name__ == '__main__':
     thread2.start()
     thread1.join()
     thread2.join()
-
+    print('run next code')
     print("--- %s seconds ---" % (time.time() - start_time))

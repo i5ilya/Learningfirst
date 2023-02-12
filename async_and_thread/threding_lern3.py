@@ -11,19 +11,17 @@ def fun1():
     
     '''
     time.sleep(5)
-    x = 5 * 1000
-    return x
+    print('fun1 завершена')
 
-def fun2(x):
+def fun2():
     print('fun2 starting...')
     lock.acquire()
     try:
         print('Lock acquired in the fun2')
     finally:
         lock.release()
-        if x:
-            y = x * 2
-            print(f'fun2 завершена, y = {y}')
+
+        print(f'fun2 завершена')
 
 
 
@@ -32,11 +30,11 @@ if __name__ == '__main__':
     #my_thread = threading.Thread(target=main)
     #my_thread.start()
     #print(time.strftime('%X'))
-    #thread1 = threading.Thread(target=fun1)
-    thread2 = threading.Thread(target=fun2, args=(fun1(),))
-    #thread1.start()
+    thread1 = threading.Thread(target=fun1)
+    thread2 = threading.Thread(target=fun2)
+    thread1.start()
     thread2.start()
-    #thread1.join()
+    thread1.join()
     thread2.join()
 
     #print("--- %s seconds ---" % (time.time() - start_time))
